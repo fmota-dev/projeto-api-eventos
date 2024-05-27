@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   modalOverlay.className = "modal-overlay";
   document.body.appendChild(modalOverlay);
 
+  const BASE_URL = 'https://projeto-api-eventos.vercel.app/';
+
   const fetchEventos = async () => {
     const response = await fetch("/eventos");
     const eventos = await response.json();
