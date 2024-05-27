@@ -1,3 +1,6 @@
+let eventos = [];
+let id = 1;
+
 class Evento {
 	constructor(id, titulo, descricao, data, local, criadoEm, atualizadoEm) {
 		this.id = id;
