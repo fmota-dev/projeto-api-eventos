@@ -2,10 +2,8 @@ const eventoController = require('../../src/controllers/eventoController');
 const express = require('express');
 const router = express.Router();
 
-const BASE_URL = `https://projeto-api-eventos.vercel.app`;
-
 router.post(
-	`${BASE_URL}/eventos`,
+	'/eventos',
 	eventoController.criarEvento
 	// #swagger.tags = ['Eventos']
 	// #swagger.description = 'Endpoint para criar um evento.'
@@ -25,7 +23,7 @@ router.post(
     */
 );
 router.get(
-	`${BASE_URL}/eventos`,
+	'/eventos',
 	eventoController.listarEventos
 	// #swagger.tags = ['Eventos']
 	// #swagger.description = 'Endpoint para listar eventos.'
@@ -37,7 +35,7 @@ router.get(
 	// }
 );
 router.get(
-	 `${BASE_URL}/eventos/:id`,
+	'/eventos/:id',
 	eventoController.obterEventoPorId
 	// #swagger.tags = ['Eventos']
 	// #swagger.description = 'Endpoint para obter um evento pelo ID.'
@@ -50,7 +48,7 @@ router.get(
 	// }
 );
 router.patch(
-	`${BASE_URL}/eventos/:id`,
+	'/eventos/:id',
 	eventoController.atualizarEvento
 	// #swagger.tags = ['Eventos']
 	// #swagger.description = 'Endpoint para atualizar um evento.'
@@ -71,7 +69,7 @@ router.patch(
     */
 );
 router.delete(
-	`${BASE_URL}/eventos/:id`,
+	'/eventos/:id',
 	eventoController.excluirEvento
 	// #swagger.tags = ['Eventos']
 	// #swagger.description = 'Endpoint para excluir um evento.'
