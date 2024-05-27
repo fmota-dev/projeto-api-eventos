@@ -18,9 +18,7 @@ fetch(`${BASE_URL}/eventos`)
 			row.innerHTML = `
                 <td>${evento.titulo}</td>
                 <td>${evento.descricao}</td>
-                <td>${formatarData(
-									evento.data
-								)}</td> // Formata a data antes de exibi-la na tabela
+                <td>${formatarData(evento.data)}</td>
                 <td>${evento.local}</td>
             `;
 			tbody.appendChild(row);
