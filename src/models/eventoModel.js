@@ -1,6 +1,3 @@
-let id = 1;
-const eventos = [];
-
 class Evento {
 	constructor(id, titulo, descricao, data, local, criadoEm, atualizadoEm) {
 		this.id = id;
@@ -15,12 +12,8 @@ class Evento {
 	criarEvento(titulo, descricao, data, local) {
 		const criadoEm = new Date();
 		const atualizadoEm = new Date();
-		const dataObj = new Date(data);
-		const dataLocal = new Date(
-			dataObj.getTime() - dataObj.getTimezoneOffset() * 60000
-		)
-			.toISOString()
-			.split('T')[0];
+		const dataObj = new Date(data + 'T00:00:00Z'); // Interpretar data como UTC
+		const dataLocal = dataObj.toISOString().split('T')[0]; // Obter a data sem ajustar fuso horário
 		const evento = new Evento(
 			id,
 			titulo,
@@ -60,7 +53,9 @@ class Evento {
 				eventos[index].descricao = descricao;
 			}
 			if (data) {
-				eventos[index].data = data;
+				const dataObj = new Date(data + 'T00:00:00Z'); // Interpretar data como UTC
+				const dataLocal = dataObj.toISOString().split('T')[0]; // Obter a data sem ajustar fuso horário
+				eventos[index].data = dataLocal;
 			}
 			if (local) {
 				eventos[index].local = local;
