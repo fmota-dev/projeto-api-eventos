@@ -1,4 +1,4 @@
-const BASE_URL = 'https://projeto-api-eventos.vercel.app/';
+const BASE_URL = 'https://projeto-api-eventos.vercel.app';
 
 fetch(`${BASE_URL}/eventos`)
 	.then((response) => response.json())
