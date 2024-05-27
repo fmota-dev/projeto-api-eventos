@@ -12,11 +12,20 @@ class Evento {
 		this.atualizadoEm = atualizadoEm;
 	}
 
+	static formatarData(data) {
+		const dataObj = new Date(data + 'T00:00:00-03:00'); // Definir a data com UTC-3
+		const dia = String(dataObj.getUTCDate()).padStart(2, '0');
+		const mes = dataObj
+			.toLocaleString('pt-BR', { month: 'short' })
+			.toUpperCase();
+		const ano = dataObj.getUTCFullYear();
+		return `${dia}/${mes}/${ano}`;
+	}
+
 	criarEvento(titulo, descricao, data, local) {
 		const criadoEm = new Date();
 		const atualizadoEm = new Date();
-		const dataObj = new Date(data + 'T00:00:00Z'); // Interpretar data como UTC
-		const dataLocal = dataObj.toISOString().split('T')[0]; // Obter a data sem ajustar fuso horário
+		const dataLocal = Evento.formatarData(data); // Formatar a data no formato desejado
 		const evento = new Evento(
 			id,
 			titulo,
@@ -56,8 +65,7 @@ class Evento {
 				eventos[index].descricao = descricao;
 			}
 			if (data) {
-				const dataObj = new Date(data + 'T00:00:00Z'); // Interpretar data como UTC
-				const dataLocal = dataObj.toISOString().split('T')[0]; // Obter a data sem ajustar fuso horário
+				const dataLocal = Evento.formatarData(data); // Formatar a data no formato desejado
 				eventos[index].data = dataLocal;
 			}
 			if (local) {
