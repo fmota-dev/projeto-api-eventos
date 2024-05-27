@@ -12,8 +12,10 @@
 			"dest": "src/app.js"
 		}
 	],
-	"static": {
-		"source": "public",
-		"dest": "/"
-	}
+	"rewrites": [
+		{
+			"source": "/(.*)",
+			"destination": "/public/$1"
+		}
+	]
 }
