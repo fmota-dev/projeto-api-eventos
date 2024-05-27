@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		e.preventDefault();
 		const formData = new FormData(formNovoEvento);
 		const evento = Object.fromEntries(formData.entries());
+		evento.data = formatarDataParaEnvio(evento.data); // Formatar data
 		await fetch(`${BASE_URL}/eventos`, {
 			method: 'POST',
 			headers: {
@@ -70,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const evento = {
 			titulo: inputTituloEditar.value,
 			descricao: inputDescricaoEditar.value,
-			data: inputDataEditar.value,
+			data: formatarDataParaEnvio(inputDataEditar.value), // Formatar data
 			local: inputLocalEditar.value,
 		};
 		await fetch(`${BASE_URL}/eventos/${id}`, {
@@ -111,3 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		hideModal(modalEditarEvento);
 	});
 });
+
+function formatarDataParaEnvio(data) {
+	const partes = data.split('/'); // Divide a data em partes: dia, mês e ano
+	const dia = partes[0];
+	const mes = partes[1];
+	const ano = partes[2];
+	return `${ano}-${mes}-${dia}`; // Formata a data como YYYY-MM-DD
+}

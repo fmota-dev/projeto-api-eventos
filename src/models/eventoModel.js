@@ -1,5 +1,5 @@
-let eventos = [];
 let id = 1;
+const eventos = [];
 
 class Evento {
 	constructor(id, titulo, descricao, data, local, criadoEm, atualizadoEm) {
@@ -12,25 +12,14 @@ class Evento {
 		this.atualizadoEm = atualizadoEm;
 	}
 
-	static formatarData(data) {
-		const dataObj = new Date(data + 'T00:00:00-03:00'); // Definir a data com UTC-3
-		const dia = String(dataObj.getUTCDate()).padStart(2, '0');
-		const mes = dataObj
-			.toLocaleString('pt-BR', { month: 'short' })
-			.toUpperCase();
-		const ano = dataObj.getUTCFullYear();
-		return `${dia}/${mes}/${ano}`;
-	}
-
 	criarEvento(titulo, descricao, data, local) {
 		const criadoEm = new Date();
 		const atualizadoEm = new Date();
-		const dataLocal = Evento.formatarData(data); // Formatar a data no formato desejado
 		const evento = new Evento(
 			id,
 			titulo,
 			descricao,
-			dataLocal,
+			data,
 			local,
 			criadoEm,
 			atualizadoEm
@@ -65,8 +54,7 @@ class Evento {
 				eventos[index].descricao = descricao;
 			}
 			if (data) {
-				const dataLocal = Evento.formatarData(data); // Formatar a data no formato desejado
-				eventos[index].data = dataLocal;
+				eventos[index].data = data;
 			}
 			if (local) {
 				eventos[index].local = local;
