@@ -14,7 +14,7 @@ app.use(eventoRoutes);
 app.use(docsRoutes);
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, '../public/html', 'index.html'));
+	res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/admin', (req, res) => {
